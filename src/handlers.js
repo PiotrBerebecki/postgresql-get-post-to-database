@@ -10,6 +10,7 @@ handlers.serveLanding = (req, res) => {
   fs.readFile(path.join(__dirname, '..', 'public', 'index.html'), (err, file) => {
     if (err) {
       handlers.serveNotFound(req, res);
+      return;
     }
 
     res.writeHead(200, { 'content-type': 'text/html' });
@@ -18,7 +19,7 @@ handlers.serveLanding = (req, res) => {
 };
 
 
-handlers.getContentType = (url) => {
+getContentType = (url) => {
   const extension = path.extname(url);
   const extensionType = {
     '.css' : 'text/css',
@@ -33,11 +34,11 @@ handlers.getContentType = (url) => {
 handlers.serveAssets = (req, res) => {
   fs.readFile(path.join(__dirname, '..', 'public', req.url), (err, file) => {
     if (err) {
-      handlers.serveNotFound(req,res);
+      handlers.serveNotFound(req, res);
       return;
     }
 
-    res.writeHead(200, { 'content-type': handlers.getContentType(req.url) });
+    res.writeHead(200, { 'content-type': getContentType(req.url) });
     res.end(file);
   });
 };

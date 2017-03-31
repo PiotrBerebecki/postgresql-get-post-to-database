@@ -31,9 +31,9 @@ CREATE TABLE basket (
 
 
 INSERT INTO products(name, price) VALUES
-  ('Car', 15),
-  ('Motorbike', 10),
-  ('Bicycle', 5)
+  ('Car', 15000),
+  ('Motorbike', 2000),
+  ('Bicycle', 400)
 RETURNING ID;
 
 INSERT INTO customers(firstname, surname) VALUES
